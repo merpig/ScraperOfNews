@@ -37,7 +37,7 @@ function addComment(obj){
             data: {body: $(obj).parent().find("textarea").val().trim()}
         }).then(function(data){
             console.log(data);
-            location.reload();
+            //location.reload();
         })
     }
     else{
