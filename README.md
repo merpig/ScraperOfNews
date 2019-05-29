@@ -1,5 +1,5 @@
 # ScraperOfNews
-This program scrapes news
+This program scrapes news. You can save articles and add/modify/remove comments.  
 [Live Here](https://nameless-sands-89966.herokuapp.com/)
 
 ## Node included Resources:
