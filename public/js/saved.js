@@ -14,7 +14,7 @@ function deleteArticle(obj){
         url: "/deleteArticle",
         data: {id: $(obj).attr("data-id")}
     }).then(function(data){
-        console.log(data);
+        //console.log(data);
         location.reload();
     })
 }
@@ -24,7 +24,7 @@ function comment(obj){
         method: "GET",
         url: "/getComment/"+$(obj).attr("data-id")
     }).then(function(data){
-        console.log(data.note);
+        //console.log(data.note);
         $(".modal-body").empty();
         $("#textArea").val('');
         if(!data.note){
@@ -39,14 +39,14 @@ function comment(obj){
 }
 
 function addComment(obj){
-    console.log($(obj).parent().attr("data-id"));
+    //console.log($(obj).parent().attr("data-id"));
     if($(obj).parent().find("textarea").val().trim()){
         $.ajax({
             method: "POST",
             url: "/addComment/"+$(obj).parent().attr("data-id"),
             data: {body: $(obj).parent().find("textarea").val().trim()}
         }).then(function(data){
-            console.log(data);
+            //console.log(data);
             location.reload();
         })
     }
@@ -56,13 +56,13 @@ function addComment(obj){
 }
 
 function deleteComment(obj){
-    console.log($(obj).attr("data-id"));
+    //console.log($(obj).attr("data-id"));
     $.ajax({
         method: "DELETE",
         url: "/deleteNote",
         data: {id: $(obj).attr("data-id")}
     }).then(function(data){
-        console.log(data);
+        //console.log(data);
         location.reload();
     })
 }
