@@ -1,5 +1,20 @@
+// Default message when there are no articles loaded
+function emptyArticles(){
+    if($(".container").text().trim() === ""){
+        $(".container").append("<div class='alert alert-info'>"+
+        "<strong>Message: </strong> Click the 'Scrape News' button to scrape articles!"+
+      "</div>");
+    }
+}
 
+emptyArticles();
+
+// Ajax request to pull articles from new york times
 function scrapeNews() {
+    $(".container").empty();
+    $(".container").append("<div class='alert alert-success'>"+
+        "<strong>Message: </strong> Scrape in progress!"+
+      "</div>");
     return $.ajax({
         headers: {
             "Content-Type": "application/json"
@@ -7,6 +22,7 @@ function scrapeNews() {
         type: "GET",
         url: "api/scraper"
     }).then(function (res) {
+        $(".container").empty();
         console.log(res);
         $(".container").append("<div class='list-group'>");
         for(var i = 3; i<res.length; i++){
@@ -23,6 +39,7 @@ function scrapeNews() {
     });
 }
 
+// Send ajax request to store article in database
 function saveArticle(obj){
     articleObj = {
         title: $(obj).parent().parent().find("h5").text(),
@@ -35,7 +52,11 @@ function saveArticle(obj){
         url: "/saveArticle",
         data: articleObj
     }).then(function(data){
-        console.log(data);
+        if(data==="Article Saved!"){
+            $(obj).text("Saved").attr("disabled","true");
+        }
+        else{
+            $(obj).text("Already Saved").attr("disabled","true");
+        }
     })
-    console.log($(obj).parent().parent().find("small").find("a").attr("href"));
 }

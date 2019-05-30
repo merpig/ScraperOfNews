@@ -1,3 +1,13 @@
+function emptyArticles(){
+    if($(".list-group").text().trim() === ""){
+        $(".list-group").append("<div class='alert alert-info'>"+
+        "<strong>Message: </strong> You have no saved arcticles, go to the homepage to save some!"+
+      "</div>");
+    }
+}
+
+emptyArticles();
+
 function deleteArticle(obj){
     $.ajax({
         method: "DELETE",
